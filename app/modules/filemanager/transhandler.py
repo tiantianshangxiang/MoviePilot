@@ -1159,10 +1159,10 @@ class TransHandler:
             # 当前只有视频文件需要保留最新版本，其余格式无需处理，以避免误删 (issue 5449)
             if f".{media_file.extension.lower()}" not in settings.RMT_MEDIAEXT:
                 continue
-            # 识别文件中的季集信息
+           # 识别文件中的季集信息
             filemeta = MetaInfoPath(media_path)
-            # 相同季集的文件才删除
-            if filemeta.season != season or filemeta.episode != episode:
+            # 相同名称、且相同季集的文件才删除
+            if filemeta.name != meta.name or filemeta.season != season or filemeta.episode != episode:
                 continue
             # 相同 Part 的文件才删除，避免误删多 Part 文件 (issue #5862)
             if part and filemeta.part and filemeta.part != part:
